@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>注册页面</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/comm.css">
+    <link rel="stylesheet" href="css/reg.css">
+</head>
+<body>
+<div class="container">
+    <div class="my_center">
+        <img id="img1" src="img/logo (1).png" alt="">
+    </div>
+    <div class="my_center">
+       <div class="my_style my_bottom">
+           <span class="my_f">用户名:</span>
+           <input class="my_input" type="text" placeholder="长度1-10位之间" id="uname">
+           <div class="my_hidden ">用户名格式错误</div>
+       </div>
+       <div class="my_style my_bottom">
+            <span class="my_f">密码:</span>
+            <input class="my_input" type="password" placeholder="长度6-12位之间"
+            id="upwd">
+            <div class="my_hidden">密码格式错误</div>
+        </div>
+        <div class="my_style">
+            <span class="my_f">手机号:</span>
+            <input class="my_input" type="text" id="phone">
+            <div class="my_hidden">手机号输入错误</div>
+        </div>
+        <button class="my_center" onclick="reg()">立即注册</button>
+        <h5>
+            <a href="login.html">登录<a>   
+            <span>&gt;</span>
+        </h5>
+    </div>
+    <script>
+        function reg(){
+            var xhr=new XMLHttpRequest();
+            xhr.onreadystatechange=function(){
+                if(xhr.readyState==4&&xhr.status==200){
+                    var result=xhr.responseText;
+                    alert(result);
+                }
+            }
+            xhr.open("post","/user/reg",true);
+            xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            var formdata=`uname=${uname.value}&upwd=${upwd.value}&phone=${phone.value}`;
+            xhr.send(formdata);
+
+        }
+        (function(){
+            //查找触发事件的元素
+            var txtUname=document.getElementById("uname");
+            var txtUpwd=document.getElementById("upwd");
+            var txtPhone=document.getElementById("phone");
+            //绑定事件处理函数
+            txtUname.onblur=function(){
+                var reg=/^\w{1,10}$/;
+                err.call(this,reg);
+            }
+            txtUpwd.onblur=function(){
+                var reg=/^\w{6,12}$/;
+                err.call(this,reg);
+            }
+            txtPhone.onblur=function(){
+                var reg=/^\d{11}$/;
+                err.call(this,reg);
+            }
+                function err(reg){
+                //查找要修改的元素
+                var input=this;
+                var div=input.nextElementSibling;
+                //修改元素
+                if(reg.test(input.value)==false){
+                    div.className="my_err";
+                }
+            }           
+            txtUname.onfocus=txtUpwd.onfocus=txtPhone.onfocus=function(){
+                 //查找要修改的元素
+                 var input=this;
+                var div=input.nextElementSibling;
+                //修改元素
+                    div.className="my_hidden";
+            }
+        })()
+    </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+h5{
+    color: #333;
+    font-size: 16px;
+}
+.a3{
+    color:#808080;
+}
+.a3:hover{
+    text-decoration: none;
+    color:#333;
+}
+h6{
+    color:#333;
+    font-size:16px;
+    margin-left: 14px;
+}
+@media screen and (max-width: 991px){
+    .footer_center{
+        margin-left:5rem;
+    }
+    .footer_bottom{
+        margin-left: 11rem;
+    }
+    .footer_top{
+        margin-left: 6rem;
+    }
+}
+@media screen and (max-width: 767px){
+    .footer_bottom{
+        margin-left: 7rem;
+    }
+    .footer_top{
+        margin-left: 4rem;
+    }
+    .footer_center{
+        margin-left:3rem;
+    }
+}
+.al:hover{
+    text-decoration:none;
+}
